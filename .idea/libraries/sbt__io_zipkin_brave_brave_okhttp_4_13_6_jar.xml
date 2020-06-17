@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="sbt: io.zipkin.brave:brave-okhttp:4.13.6:jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.cache/coursier/v1/https/repo1.maven.org/maven2/io/zipkin/brave/brave-okhttp/4.13.6/brave-okhttp-4.13.6.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.cache/coursier/v1/https/repo1.maven.org/maven2/io/zipkin/brave/brave-okhttp/4.13.6/brave-okhttp-4.13.6-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.cache/coursier/v1/https/repo1.maven.org/maven2/io/zipkin/brave/brave-okhttp/4.13.6/brave-okhttp-4.13.6-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
