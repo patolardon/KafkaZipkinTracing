@@ -4,6 +4,7 @@ First download kafka :
 https://kafka.apache.org/downloads
 
 add kafka bin to path
+
 install java 8
 
 from kafka folder :
