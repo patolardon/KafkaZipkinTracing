@@ -9,7 +9,7 @@ install java 8
 
 from kafka folder :
 
-run zookeeper-server-start.sh config/zookeeper.properties
+run zookeeper-server-start.sh config/server.properties
 
 run kafka-server-start.sh config/zookeeper.properties 
 
