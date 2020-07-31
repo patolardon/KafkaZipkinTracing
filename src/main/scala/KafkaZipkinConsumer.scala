@@ -1,3 +1,4 @@
+package kafka.tracing
 import java.lang.System.out
 import java.util.Properties
 
@@ -13,36 +14,49 @@ import java.util
 import org.apache.kafka.clients.consumer.KafkaConsumer
 import java.util.Properties
 
+import zipkin2.reporter.brave.AsyncZipkinSpanHandler
+import zipkin2.reporter.kafka11.KafkaSender
+import zipkin2.reporter.okhttp3.OkHttpSender
+
 import scala.collection.JavaConverters._
 import scala.concurrent.duration.Duration
 
 object KafkaZipkinConsumer extends App{
   /* START TRACING INSTRUMENTATION */
-  val sender: URLConnectionSender = URLConnectionSender.newBuilder.endpoint("http://127.0.0.1:9411/api/v2/spans").build
-  val reporter = AsyncReporter.builder(sender).build
-  val tracing = Tracing.newBuilder.localServiceName("hello-producer").sampler(Sampler.ALWAYS_SAMPLE).spanReporter(Reporter.CONSOLE).build
+  //val sender = OkHttpSender.create("http://localhost:8080/api/v2/spans")
+  val sender = KafkaSender.newBuilder.bootstrapServers("127.0.0.1:9092").topic("zipkin").build
+  val zipkinSpanHandler = AsyncZipkinSpanHandler.create(sender) // don't forget to close!
+  val tracing = Tracing.newBuilder.localServiceName("my-service").sampler(Sampler.create(1.0F)).addSpanHandler(zipkinSpanHandler).build
   val kafkaTracing = KafkaTracing.newBuilder(tracing).remoteServiceName("kafka").build
+
   /* END TRACING INSTRUMENTATION */
   val properties = new Properties
 
   properties.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092")
   properties.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, classOf[StringDeserializer].getName)
   properties.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, classOf[StringDeserializer].getName)
-  properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, "mygroup1")
+  properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, "mygrgogf")
   properties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest")
-  //create producer
+  properties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest")
+
+  //create consumer
   val kafkaConsumer = new KafkaConsumer[String, String](properties)
   val tracingConsumer = kafkaTracing.consumer(kafkaConsumer)
   tracingConsumer.subscribe(util.Arrays.asList("my-topic-test"))
   while (true) {
     val consumerRecords = tracingConsumer.poll(100)
+    zipkinSpanHandler.flush()
     import scala.collection.JavaConversions._
     for (record <- consumerRecords) {
       val span = kafkaTracing.nextSpan(record).name("print-hello").start()
       span.annotate("starting printing")
+      span.flush()
       println(String.format("Record: %s", record))
       span.annotate("printing finished")
       span.finish()
     }
   }
+  zipkinSpanHandler.flush()
+  zipkinSpanHandler.close()
+
 }
