@@ -7,7 +7,7 @@ import zipkin2.reporter.AsyncReporter
 import zipkin2.reporter.kafka.KafkaSender
 import org.apache.kafka.common.serialization.Serdes
 import org.apache.kafka.common.serialization.Serdes.StringSerde
-import org.apache.kafka.streams.kstream.{KeyValueMapper, Produced}
+import org.apache.kafka.streams.kstream.{Produced}
 import org.apache.kafka.streams.scala.StreamsBuilder
 import org.apache.kafka.streams.scala.kstream.{KStream}
 import org.apache.kafka.streams.{KafkaStreams, StreamsConfig}
@@ -39,7 +39,8 @@ object KafkaZipkinStreams extends App {
 
   val outputTopic = inputTopic
     .transform(
-      kafkaStreamsTracing.map("my map", (k:String, v:String) => (k, run(v))))
+      kafkaStreamsTracing
+        .map("span name", (k, v)=> (k, run(v))))
 
   outputTopic.to("output-topic")(Produced.`with`(Serdes.String(), Serdes.String()))
 
