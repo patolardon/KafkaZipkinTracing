@@ -1,2 +1,13 @@
-[debug] downloaded https://repo1.maven.org/maven2/io/zipkin/contrib/brave/brave-kafka-interceptor/0.5.2/brave-kafka-interceptor-0.5.2.pom
-[debug] downloaded https://repo1.maven.org/maven2/io/zipkin/contrib/brave/brave-kafka-interceptor/0.5.2/brave-kafka-interceptor-0.5.2.pom.sha1
+[debug] downloaded https://repo1.maven.org/maven2/io/zipkin/brave/brave-instrumentation-kafka-streams/5.12.4/brave-instrumentation-kafka-streams-5.12.4.pom
+[debug] downloaded https://repo1.maven.org/maven2/io/zipkin/brave/brave-instrumentation-parent/5.12.4/brave-instrumentation-parent-5.12.4.pom
+[debug] downloaded https://repo1.maven.org/maven2/io/zipkin/brave/brave-instrumentation-messaging/5.12.4/brave-instrumentation-messaging-5.12.4.pom
+[debug] downloaded https://repo1.maven.org/maven2/io/zipkin/brave/brave-instrumentation-kafka-clients/5.12.4/brave-instrumentation-kafka-clients-5.12.4.pom
+[debug] downloaded https://repo1.maven.org/maven2/io/zipkin/brave/brave-instrumentation-kafka-clients/5.12.4/brave-instrumentation-kafka-clients-5.12.4.jar
+[debug] downloaded https://repo1.maven.org/maven2/io/zipkin/brave/brave-instrumentation-kafka-streams/5.12.4/brave-instrumentation-kafka-streams-5.12.4.jar
+[debug] downloaded https://repo1.maven.org/maven2/io/zipkin/brave/brave-instrumentation-messaging/5.12.4/brave-instrumentation-messaging-5.12.4.jar
+[debug] downloaded https://repo1.maven.org/maven2/io/zipkin/brave/brave-instrumentation-messaging/5.12.4/brave-instrumentation-messaging-5.12.4-sources.jar
+[debug] downloaded https://repo1.maven.org/maven2/io/zipkin/brave/brave-instrumentation-kafka-streams/5.12.4/brave-instrumentation-kafka-streams-5.12.4-sources.jar
+[debug] downloaded https://repo1.maven.org/maven2/io/zipkin/brave/brave-instrumentation-kafka-clients/5.12.4/brave-instrumentation-kafka-clients-5.12.4-javadoc.jar
+[debug] downloaded https://repo1.maven.org/maven2/io/zipkin/brave/brave-instrumentation-kafka-clients/5.12.4/brave-instrumentation-kafka-clients-5.12.4-sources.jar
+[debug] downloaded https://repo1.maven.org/maven2/io/zipkin/brave/brave-instrumentation-messaging/5.12.4/brave-instrumentation-messaging-5.12.4-javadoc.jar
+[debug] downloaded https://repo1.maven.org/maven2/io/zipkin/brave/brave-instrumentation-kafka-streams/5.12.4/brave-instrumentation-kafka-streams-5.12.4-javadoc.jar
