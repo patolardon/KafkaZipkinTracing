@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/KafkaStreamsZipkin/KafkaStreamsZipkin.iml" filepath="$PROJECT_DIR$/KafkaStreamsZipkin/KafkaStreamsZipkin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/KafkaZipkin/KafkaZipkin.iml" filepath="$PROJECT_DIR$/KafkaZipkin/KafkaZipkin.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/KafkaZipkinTracing.iml" filepath="$PROJECT_DIR$/.idea/modules/KafkaZipkinTracing.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/KafkaZipkinTracing-build.iml" filepath="$PROJECT_DIR$/.idea/modules/KafkaZipkinTracing-build.iml" />
     </modules>

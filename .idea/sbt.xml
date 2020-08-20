@@ -8,6 +8,8 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/KafkaStreamsZipkin" />
+            <option value="$PROJECT_DIR$/KafkaZipkin" />
             <option value="$PROJECT_DIR$/project" />
           </set>
         </option>
