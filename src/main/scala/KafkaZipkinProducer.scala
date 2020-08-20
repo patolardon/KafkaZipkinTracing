@@ -4,6 +4,9 @@ import brave.Tracing
 import brave.sampler.Sampler
 import brave.kafka.clients.KafkaTracing
 import java.util.Properties
+
+import brave.handler.FinishedSpanHandler
+import brave.internal.handler.ZipkinFinishedSpanHandler
 import org.apache.kafka.clients.producer.ProducerRecord
 import org.apache.kafka.clients.producer._
 import org.apache.kafka.common.serialization.StringSerializer
@@ -18,7 +21,7 @@ object KafkaZipkinProducer {
     //val sender = OkHttpSender.create("http://localhost:8080/api/v2/spans")
     val sender: KafkaSender = KafkaSender.newBuilder.bootstrapServers("127.0.0.1:9092").topic("zipkin").build
     val zipkinSpanHandler = AsyncReporter.create(sender) // don't forget to close!
-    val tracing = Tracing.newBuilder.localServiceName("my-service")
+    val tracing = Tracing.newBuilder.localServiceName("my-service").addFinishedSpanHandler(FinishedSpanHandler.NOOP)
       .sampler(Sampler.create(1.0F)).spanReporter(zipkinSpanHandler).build
 
     val kafkaTracing = KafkaTracing.newBuilder(tracing).remoteServiceName("kafka").build
@@ -34,8 +37,6 @@ object KafkaZipkinProducer {
     val record = new ProducerRecord[String, String]("my-topic-test", "1", "hello, world !")
 
       tracingProducer.send(record)
-      tracingProducer.flush()
-      zipkinSpanHandler.flush()
 
     }
     tracingProducer.close()

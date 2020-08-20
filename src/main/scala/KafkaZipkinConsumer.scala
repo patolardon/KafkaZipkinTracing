@@ -30,7 +30,7 @@ object KafkaZipkinConsumer extends App{
   properties.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092")
   properties.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, classOf[StringDeserializer].getName)
   properties.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, classOf[StringDeserializer].getName)
-  properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, "mygrfdfdgogf")
+  properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, "gfgggfgfgfgffdgd")
   properties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest")
   properties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest")
 
@@ -41,18 +41,11 @@ object KafkaZipkinConsumer extends App{
   tracingConsumer.subscribe(util.Arrays.asList("my-topic-test"))
   while (true) {
     val consumerRecords = tracingConsumer.poll(100)
-    zipkinSpanHandler.flush()
     import scala.collection.JavaConversions._
     for (record <- consumerRecords) {
-      val span = kafkaTracing.nextSpan(record).name("print-hello").start()
-      span.annotate("starting printing")
-      span.flush()
       println(String.format("Record: %s", record))
-      span.annotate("printing finished")
-      span.finish()
     }
   }
-  zipkinSpanHandler.flush()
   zipkinSpanHandler.close()
 
 }
