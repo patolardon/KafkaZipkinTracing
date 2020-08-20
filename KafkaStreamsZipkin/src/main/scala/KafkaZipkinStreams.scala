@@ -19,7 +19,7 @@ object KafkaZipkinStreams extends App{
 
   val config: Properties = {
     val properties = new Properties()
-    properties.put(StreamsConfig.APPLICATION_ID_CONFIG, "MowerStream")
+    properties.put(StreamsConfig.APPLICATION_ID_CONFIG, "KafkaStreamsZipkin")
     val bootstrapServers = if (args.length > 0) args(0) else "localhost:9092"
     properties.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers)
     properties.setProperty(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, classOf[StringSerde].getName)
@@ -31,7 +31,7 @@ object KafkaZipkinStreams extends App{
   val streamsBuilder = new StreamsBuilder
 
   /* START TRACING INSTRUMENTATION */
-  val sender: KafkaSender = KafkaSender.newBuilder.bootstrapServers("127.0.0.1:9092").topic("zipkinStreams").build
+  val sender: KafkaSender = KafkaSender.newBuilder.bootstrapServers("127.0.0.1:9092").topic("zipkin-streams").build
   val zipkinSpanHandler = AsyncReporter.create(sender) // don't forget to close!
   val tracing = Tracing.newBuilder.localServiceName("my-service")
     .sampler(Sampler.create(1.0F)).spanReporter(zipkinSpanHandler).build
