@@ -33,7 +33,7 @@ object KafkaZipkinProducer {
     //create producer
     val kafkaProducer = new KafkaProducer[String, String](properties)
     val tracingProducer = kafkaTracing.producer[String, String](kafkaProducer)
-    for (i <- 0 to 10) {
+    for (i <- 0 to 1) {
     val record = new ProducerRecord[String, String]("my-topic-test", "1", "hello, world !")
 
       tracingProducer.send(record)
