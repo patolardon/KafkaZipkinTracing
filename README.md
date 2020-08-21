@@ -13,10 +13,10 @@ run zookeeper-server-start.sh config/server.properties
 
 run kafka-server-start.sh config/zookeeper.properties 
 
-run zipkin
-https://zipkin.io/pages/quickstart.html
+run KafkaStreamsZipkin app
 
-run docker run -d -p 9411:9411 openzipkin/zipkin
+run KafkaZipkinProducer app
 
-zipkin is on localhost:9411
+consume topics : my-topic-test, output-topic, zipkin, zipkin-streams (which are automatically created as soon as the producer is writing in my-topic-test) :
+  You should see messages and traces
 
