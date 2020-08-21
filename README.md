@@ -20,3 +20,8 @@ run KafkaZipkinProducer app
 consume topics : my-topic-test, output-topic, zipkin, zipkin-streams (which are automatically created as soon as the producer is writing in my-topic-test) :
   You should see messages and traces
 
+Kafka connect : 
+
+From the KafkaConnectZipkin folder, run the run.sh command.
+
+Only tune was to add brave-kafka-interceptor-0.5.5-SNAPSHOT.jar to the kafka-connect-twitter folder and to parameter it in the connect-standalone.properties
