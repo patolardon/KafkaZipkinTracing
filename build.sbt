@@ -26,3 +26,16 @@ lazy val KafkaZipkin = project
       "org.springframework.cloud" % "spring-cloud-sleuth-zipkin" % "2.2.4.RELEASE"
     )
   )
+
+lazy val KafkaAkka = project
+  .settings(
+    name := "KafkaAkka",
+    libraryDependencies ++= Seq(
+      "com.typesafe.akka" %% "akka-actor" % "2.5.19",
+      "org.apache.kafka" % "kafka-clients" % "2.5.0",
+      "com.typesafe.akka" %% "akka-http" % "10.2.0",
+      "net.liftweb" %% "lift-json" % "3.4.2",
+      "com.typesafe.akka" %% "akka-stream" % "2.5.19"
+
+    )
+  )

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ScalaCompilerConfiguration">
-    <profile name="sbt 1" modules="KafkaStreamsZipkin,KafkaZipkin,KafkaZipkinTracing,kafkastreamszipkin.KafkaStreamsZipkin,kafkazipkin.KafkaZipkin" />
+    <profile name="sbt 1" modules="KafkaAkka,KafkaAkkaZipkin,KafkaStreamsZipkin,KafkaZipkin,KafkaZipkinTracing,kafkastreamszipkin.KafkaStreamsZipkin,kafkazipkin.KafkaZipkin,kafkazipkintracing" />
   </component>
 </project>

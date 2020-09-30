@@ -13,6 +13,7 @@ import org.apache.kafka.streams.scala.StreamsBuilder
 import org.apache.kafka.streams.scala.kstream.KStream
 import zipkin2.reporter.AsyncReporter
 import zipkin2.reporter.kafka.KafkaSender
+import zipkin2.reporter.okhttp3.OkHttpSender
 
 object KafkaZipkinStreams extends App{
   // create config
@@ -32,8 +33,10 @@ object KafkaZipkinStreams extends App{
 
   /* START TRACING INSTRUMENTATION */
   val sender: KafkaSender = KafkaSender.newBuilder.bootstrapServers("127.0.0.1:9092").topic("zipkin-streams").build
+  //val sender = OkHttpSender.create("http://localhost:9411/api/v2/spans")
+
   val zipkinSpanHandler = AsyncReporter.create(sender) // don't forget to close!
-  val tracing = Tracing.newBuilder.localServiceName("my-service")
+  val tracing = Tracing.newBuilder.localServiceName("kafka-stream-test")
     .sampler(Sampler.create(1.0F)).spanReporter(zipkinSpanHandler).build
   val kafkaStreamsTracing = KafkaStreamsTracing.create(tracing)
   /* END TRACING INSTRUMENTATION */
